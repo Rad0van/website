@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="website_menus_form_view_icon" model="ir.ui.view">
+            <field name="name">website.menu.form.icon</field>
+            <field name="model">website.menu</field>
+            <field name="inherit_id" ref="website.website_menus_form_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='website_id']" position="after">
+                    <field name="image_type" />
+                    <field name="image" />
+                </xpath>
+            </field>
+        </record>
+        <record id="website_menus_tree_view_icon" model="ir.ui.view">
+            <field name="name">website.menu.tree.icon</field>
+            <field name="model">website.menu</field>
+            <field name="inherit_id" ref="website.menu_tree" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='url']" position="after">
+                    <field name="image_type" />
+                    <field name="image" />
+                </xpath>
+            </field>
+        </record>
+    </data>
+    <template id="assets" inherit_id="web.assets_common">
+        <xpath expr="." position="inside">
+            <script
+                type="text/javascript"
+                src="/website_menu_icon/static/src/js/content.js"
+            />
+        </xpath>
+    </template>
+</odoo>

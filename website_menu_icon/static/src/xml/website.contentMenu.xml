@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template" xml:space="preserve">
+    <div t-name="website.contentMenu.entry.dialog.icon" t-extend="wysiwyg.widgets.link">
+        <t t-jquery="form" t-operation="append">
+            <div class="form-group row">
+                <label
+                    class="col-form-label col-md-3"
+                    for="o_icon_dialog_label_input"
+                >Icon / Image</label>
+                <div class="col-md-9 input-group ml-auto">
+                    <input
+                        type="text"
+                        name="image"
+                        id="o_icon_dialog_label_input_value"
+                        class="form-control o_we_search"
+                        placeholder="Search icon or image"
+                        readonly="1"
+                        t-att-value="widget.data.image"
+                    />
+                    <div class="input-group-append">
+                        <div class="input-group-text o_we_search_icon">
+                            <i
+                                class="fa fa-search"
+                                title="Search"
+                                role="img"
+                                aria-label="Search"
+                            />
+                        </div>
+                        <div class="input-group-text o_we_delete_icon">
+                            <i
+                                class="fa fa-remove"
+                                title="Remove"
+                                role="img"
+                                aria-label="Remove"
+                            />
+                        </div>
+                    </div>
+                </div>
+                <input
+                    type="text"
+                    name="image_type"
+                    id="o_icon_dialog_label_input_type"
+                    class="d-none"
+                    t-att-value="widget.data.image_type"
+                />
+            </div>
+        </t>
+    </div>
+    <!--
+    Had to copy and update the templates as I couldn't make the in-place extension work.
+    Also common mechanism didn't work for replacing t-call to "website.contentMenu.dialog.submenu.icon"
+-->
+    <t t-name="website.contentMenu.dialog.submenu.icon">
+        <li
+            t-att-data-menu-id="submenu.fields['id']"
+            t-att-data-mega-menu="submenu.fields['is_mega_menu'] ? true : undefined"
+        >
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span
+                        class="input-group-text fa fa-bars"
+                        role="img"
+                        aria-label="Dropdown menu"
+                        title="Dropdown menu"
+                    />
+                </div>
+                <span class="form-control d-flex align-items-center">
+                    <span class="js_menu_label o_text_overflow flex-grow-1">
+                        <t t-if="submenu.fields['image_type'] == 'icon'">
+                            <span t-att-class="submenu.fields['image']" />
+                        </t>
+                        <t t-elif="submenu.fields['image_type'] == 'image'">
+                            <img
+                                class="o_we_custom_image"
+                                height="25"
+                                t-att-src="submenu.fields['image']"
+                            />
+                        </t>
+                        <t t-else="">
+                            <span class="fa fa-blank" />
+                        </t>
+                        <t t-esc="submenu.fields['name']" />
+                    </span>
+                    <span
+                        t-if="submenu.fields['is_mega_menu']"
+                        class="badge badge-primary"
+                    >Mega Menu</span>
+                    <span
+                        t-if="submenu.fields['new_window']"
+                        class="badge badge-success"
+                    >New Window</span>
+                    <i
+                        t-if="submenu.is_homepage"
+                        class="fa fa-home ml-3"
+                        role="img"
+                        aria-label="Home"
+                        title="Home"
+                    />
+                </span>
+                <span class="input-group-append">
+                    <button
+                        type="button"
+                        class="btn btn-primary js_edit_menu fa fa-pencil-square-o"
+                        aria-label="Edit Menu Item"
+                        title="Edit Menu Item"
+                    />
+                    <button
+                        type="button"
+                        class="btn btn-danger js_delete_menu fa fa-trash-o"
+                        aria-label="Delete Menu Item"
+                        title="Delete Menu Item"
+                    />
+                </span>
+            </div>
+            <t t-set="children" t-value="submenu.children" />
+            <ul t-if="children">
+                <t t-foreach="children" t-as="submenu">
+                    <t t-call="website.contentMenu.dialog.submenu.icon" />
+                </t>
+            </ul>
+        </li>
+    </t>
+    <div t-name="website.contentMenu.dialog.edit.icon">
+        <select class="form-control mb16" t-if="widget.roots">
+            <t t-foreach="widget.roots" t-as="root">
+                <option t-att-value="root.id">
+                    <t t-esc="root.name" />
+                </option>
+            </t>
+        </select>
+        <ul class="oe_menu_editor list-unstyled">
+            <t t-foreach="widget.menu.children" t-as="submenu">
+                <t t-call="website.contentMenu.dialog.submenu.icon" />
+            </t>
+        </ul>
+        <div class="mt32">
+            <small class="float-right text-muted">
+            Drag to the right to get a submenu
+        </small>
+            <a href="#" class="js_add_menu">
+            <i class="fa fa-plus-circle" /> Add Menu Item
+        </a>
+            <br />
+            <a href="#" class="js_add_menu" data-type="mega">
+            <i class="fa fa-plus-circle" /> Add Mega Menu Item
+        </a>
+        </div>
+    </div>
+</templates>
