@@ -8,18 +8,13 @@ class Menu(models.Model):
 
     _inherit = "website.menu"
 
-    image = fields.Char("Icon", required=False, translate=True)
-    image_type = fields.Selection(
-        [("none", "None"), ("image", "Image"), ("icon", "Icon")],
+    icon = fields.Char("Icon", required=False, translate=True)
+    icon_type = fields.Selection(
+        [("image", "Image"), ("icon", "Icon")],
         string="Type",
         required=False,
         translate=False,
-        default="none",
     )
-
-    @api.model
-    def save(self, website_id, data):
-        super(Menu, self).save(website_id, data)
 
     # this is straight copy from original code as the set of attributes
     # is defined in sub-function
@@ -42,8 +37,8 @@ class Menu(models.Model):
                     "is_mega_menu": node.is_mega_menu,
                     "sequence": node.sequence,
                     "parent_id": node.parent_id.id,
-                    "image_type": node.image_type,
-                    "image": node.image,
+                    "icon_type": node.icon_type,
+                    "icon": node.icon,
                 },
                 "children": [],
                 "is_homepage": is_homepage,

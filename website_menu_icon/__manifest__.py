@@ -14,6 +14,6 @@ These can be then rendered in a custom theme.
 It also brings back option for opening new window.
     """,
     "depends": ["website", "web_editor"],
-    "data": ["views/website_menu_icon.xml"],
+    "data": ["views/assets.xml", "views/website_menu_icon.xml"],
     "installable": True,
 }

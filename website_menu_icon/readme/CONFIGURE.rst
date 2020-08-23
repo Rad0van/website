@@ -14,24 +14,7 @@ If you click the `Edit Menu Item` button enhanced menu item editing dialog.
 Clicking on search icon will bring up `Select a Media` dialog that will allow
 for selecting either image or font awesome icon.
 
-The module itself does not alter rendering of the website menu. This can be achieved
-be extending menu rendering in your theme. Something like this:
+Sample `website.submenu` template is included to show how to render the website menu.
+Rendering icons can be turned off in `Customize` menu.
 
-.. code-block:: XML
-
-      <template id="submenu" inherit_id="website.submenu">
-        <!-- append glyphicons -->
-        <xpath expr="//li/a" position="attributes">
-          <attribute name="t-attf-class" add="text-alpha" separator=" "/>
-        </xpath>
-        <xpath expr="//li/a/span[@t-field='submenu.name']" position="before">
-          <t t-if="submenu.image_type == 'icon'">
-            <span t-if="submenu.image" t-attf-class="menu-icon #{submenu.image  or ''}"/>
-          </t>
-          <t t-elif="submenu.image_type == 'image'">
-            <img class="menu-image o_we_custom_image" t-att-src="submenu.image"/>
-          </t>
-          <t t-else="">
-          </t>
-        </xpath>
-      </template>
+.. image:: https://raw.githubusercontent.com/Rad0van/website/website_menu_icon/website_menu_icon/static/description/menu_sample.png

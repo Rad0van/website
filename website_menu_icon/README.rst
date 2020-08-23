@@ -10,21 +10,24 @@ Website Menu Icons
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/github-OCA%2Fwebsite-lightgray.png?logo=github
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
+    :alt: License: AGPL-3
+.. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fwebsite-lightgray.png?logo=github
     :target: https://github.com/OCA/website/tree/13.0/website_menu_icon
     :alt: OCA/website
-.. |badge3| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
+.. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
     :target: https://translation.odoo-community.org/projects/website-13-0/website-13-0-website_menu_icon
     :alt: Translate me on Weblate
-.. |badge4| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
+.. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
     :target: https://runbot.odoo-community.org/runbot/186/13.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| 
+|badge1| |badge2| |badge3| |badge4| |badge5| 
 
-This module allows to assign image or icon to individual menu entries.
-These can be used in a custom theme to render menus with icons.
-The module also brings back option for opening menu item in new window
+This module allows to assign image or icon to individual menu entries
+and also provides option to set the flag to open menu in new window
+from menu editing.
 
 **Table of contents**
 
@@ -50,28 +53,10 @@ If you click the `Edit Menu Item` button enhanced menu item editing dialog.
 Clicking on search icon will bring up `Select a Media` dialog that will allow
 for selecting either image or font awesome icon.
 
-The module itself does not alter rendering of the website menu. This can be achieved
-be extending menu rendering in your theme. Something like this:
+Sample `website.submenu` template is included to show how to render the website menu.
+Rendering icons can be turned off in `Customize` menu.
 
-.. code-block:: XML
-
-      <template id="submenu" inherit_id="website.submenu">
-        <!-- append glyphicons -->
-        <xpath expr="//li/a" position="attributes">
-          <attribute name="t-attf-class" add="text-alpha" separator=" "/>
-        </xpath>
-        <xpath expr="//li/a/span[@t-field='submenu.name']" position="before">
-          <t t-if="submenu.image_type == 'icon'">
-            <span t-if="submenu.image" t-attf-class="menu-icon #{submenu.image  or ''}"/>
-          </t>
-          <t t-elif="submenu.image_type == 'image'">
-            <img class="menu-image o_we_custom_image" t-att-src="submenu.image"/>
-          </t>
-          <t t-else="">
-          </t>
-        </xpath>
-      </template>
-
+.. image:: https://raw.githubusercontent.com/Rad0van/website/website_menu_icon/website_menu_icon/static/description/menu_sample.png
 
 Bug Tracker
 ===========

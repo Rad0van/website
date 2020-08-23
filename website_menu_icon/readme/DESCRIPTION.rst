@@ -1,3 +1,3 @@
-This module allows to assign image or icon to individual menu entries.
-These can be used in a custom theme to render menus with icons.
-The module also brings back option for opening menu item in new window
+This module allows to assign image or icon to individual menu entries
+and also provides option to set the flag to open menu in new window
+from menu editing.
