@@ -25,7 +25,7 @@ Website Menu Icons
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
-This module allows to assign image or icon to individual menu entries
+This module allows to assign image or icon to individual website menu entries
 and also provides option to set the flag to open menu in new window
 from menu editing.
 
